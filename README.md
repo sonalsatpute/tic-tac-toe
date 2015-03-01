@@ -1,5 +1,4 @@
 # tic_tac_toe
- # Tic-Tac-Toe is a board-game. 
 
  1. It has two players. 
  2. Each player has an icon depicting a nought ( O ) or a cross ( X ). 
