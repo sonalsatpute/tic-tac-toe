@@ -1,12 +1,19 @@
 ﻿namespace TicTacToe.Business
 {
-    public class Game
+    public enum PlayerIcon 
     {
-        readonly int[,] _board;
+        Empty  = ' ',
+        Nought = 'O',
+        Cross  = 'X'
+    }
 
-        public Game(int boadSize)
+    public class BoardGame
+    {
+        readonly PlayerIcon[,] _board;
+
+        public BoardGame(int boadSize)
         {
-            _board = new int[boadSize,boadSize];
+            _board = new PlayerIcon[boadSize, boadSize];
         }
 
         public int GetRowCount()
@@ -17,6 +24,16 @@
         public int GetColumnCount()
         {
             return _board.GetLength(1);
+        }
+
+        public void Mark(PlayerIcon icon, int row, int column)
+        {
+            _board[row, column] = icon;
+        }
+
+        public PlayerIcon GetCellStatus(int row, int column)
+        {
+            return _board[row,column];
         }
     }
 }
