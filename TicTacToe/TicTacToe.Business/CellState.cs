@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe.Business
 {
-    public enum PlayerIcon 
+    public enum CellState
     {
         Empty ,
         Nought,

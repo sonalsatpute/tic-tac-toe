@@ -1,47 +1,32 @@
 ﻿namespace TicTacToe.Business
 {
-    public class BoardGame
+    public class Game
     {
-        readonly PlayerIcon[,] _board;
+        public Board _board = new Board();
 
-        public BoardGame(int boadSize)
+        public void MarkCell(CellState cellState, int row, int column)
         {
-            _board = new PlayerIcon[boadSize+1, boadSize+1];
+            if (_board.IsCellEmpty(row, column))
+                throw new InvalidMoveException(string.Format("CellState[{0},{1}] is not empty", row, column));
+
+            _board.MarkCell(cellState, row, column);
         }
 
-        public int GetRowCount()
+        public CellState GetCellStatus(int row, int column)
         {
-            return _board.GetLength(0)-1;
+            return _board.GetCellStatus(row, column);
         }
 
-        public int GetColumnCount()
+        public CellState GetWinner()
         {
-            return _board.GetLength(1)-1;
-        }
+            CellState firstCellState  = _board.GetCellStatus(0, 0);
+            CellState secondCellState = _board.GetCellStatus(0, 1);
+            CellState thirdCellState  = _board.GetCellStatus(0, 2);
 
-        public void MarkCell(PlayerIcon icon, int row, int column)
-        {
-            if (_board[row, column] != PlayerIcon.Empty)
-                throw new InvalidMoveException(string.Format("Cell[{0},{1}] is not empty", row, column));
-            
-            _board[row, column] = icon;
-        }
+            if (firstCellState == secondCellState && firstCellState == thirdCellState)
+                return firstCellState;
 
-        public PlayerIcon GetCellStatus(int row, int column)
-        {
-            return _board[row,column];
-        }
-
-        public PlayerIcon Winner()
-        {
-            PlayerIcon firstCell    = _board[1, 1];
-            PlayerIcon secondCell   = _board[1, 2];
-            PlayerIcon thirdCell    = _board[1, 3];
-
-            if (firstCell == secondCell && firstCell == thirdCell)
-                return firstCell;
-
-            return PlayerIcon.Empty;
+            return CellState.Empty;
         }
     }
 }
