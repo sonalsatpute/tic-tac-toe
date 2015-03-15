@@ -20,10 +20,12 @@ namespace TicTacToe.Specifications
         {
             if (string.IsNullOrWhiteSpace(rowMap)) return;
 
-            string[] cellStates = rowMap.Trim().Split(' ');
+            string[] cellStates = rowMap.Trim().Split('|');
 
             for (int col = 0; col < cellStates.Length; col++)
             {
+                if (cellStates[col] == string.Empty) continue;
+
                 CellState cellState = cellStates[col] == "X" ? CellState.Cross : CellState.Nought;
 
                 _game.MarkCell(cellState, row - ZERO_BASED_INDEX, col);
@@ -56,9 +58,9 @@ namespace TicTacToe.Specifications
         {
             Because of = () =>
             {
-                MarkBoardRow(1, "X X X");
-                MarkBoardRow(2, "     ");
-                MarkBoardRow(3, "     ");
+                MarkBoardRow(1, "X|X|X");
+                MarkBoardRow(2, " | | ");
+                MarkBoardRow(3, " | | ");
             };
 
             It should_declare_Cross_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
@@ -68,9 +70,9 @@ namespace TicTacToe.Specifications
         {
             Because of = () =>
             {
-                MarkBoardRow(1, "O O O");
-                MarkBoardRow(2, "     ");
-                MarkBoardRow(3, "     ");
+                MarkBoardRow(1, "O|O|O");
+                MarkBoardRow(2, " | | ");
+                MarkBoardRow(3, " | | ");
             };
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Nought);
@@ -80,9 +82,9 @@ namespace TicTacToe.Specifications
         {
             Because of = () =>
             {
-                MarkBoardRow(1, "     ");
-                MarkBoardRow(2, "X X X");
-                MarkBoardRow(3, "     ");
+                MarkBoardRow(1, " | | ");
+                MarkBoardRow(2, "X|X|X");
+                MarkBoardRow(3, " | | ");
             };
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
@@ -92,9 +94,9 @@ namespace TicTacToe.Specifications
         {
             Because of = () =>
             {
-                MarkBoardRow(1, "     ");
-                MarkBoardRow(2, "     ");
-                MarkBoardRow(3, "X X X");
+                MarkBoardRow(1, " | | ");
+                MarkBoardRow(2, " | | ");
+                MarkBoardRow(3, "X|X|X");
             };
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
@@ -105,9 +107,9 @@ namespace TicTacToe.Specifications
         {
             Because of = () =>
             {
-                MarkBoardRow(1, "X     ");
-                MarkBoardRow(2, "X     ");
-                MarkBoardRow(3, "X     ");
+                MarkBoardRow(1, "X| | ");
+                MarkBoardRow(2, "X| | ");
+                MarkBoardRow(3, "X| | ");
             };
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
@@ -117,9 +119,9 @@ namespace TicTacToe.Specifications
         {
             Because of = () =>
             {
-                MarkBoardRow(1, "  X  ");
-                MarkBoardRow(2, "  X  ");
-                MarkBoardRow(3, "  X  ");
+                MarkBoardRow(1, " |X| ");
+                MarkBoardRow(2, " |X| ");
+                MarkBoardRow(3, " |X| ");
             };
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
