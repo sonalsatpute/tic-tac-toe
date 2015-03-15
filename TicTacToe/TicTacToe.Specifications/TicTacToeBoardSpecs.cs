@@ -64,7 +64,7 @@ namespace TicTacToe.Specifications
             It should_declare_Cross_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
         }
 
-        public class when_board_top_cells_are_marked_as_Nought
+        public class when_board_1st_row_cells_are_marked_by_single_palyer
         {
             Because of = () =>
             {
@@ -73,7 +73,56 @@ namespace TicTacToe.Specifications
                 MarkBoardRow(3, "     ");
             };
 
-            It should_declare_Nought_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Nought);
+            It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Nought);
+        }
+
+        public class when_board_2nd_row_cells_are_marked_by_single_palyer
+        {
+            Because of = () =>
+            {
+                MarkBoardRow(1, "     ");
+                MarkBoardRow(2, "X X X");
+                MarkBoardRow(3, "     ");
+            };
+
+            It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
+        }
+
+        public class when_board_3rd_row_cells_are_marked_by_single_palyer
+        {
+            Because of = () =>
+            {
+                MarkBoardRow(1, "     ");
+                MarkBoardRow(2, "     ");
+                MarkBoardRow(3, "X X X");
+            };
+
+            It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
+        }
+
+
+        public class when_board_1st_cell_of_all_the_rows_are_marked_by_single_palyer
+        {
+            Because of = () =>
+            {
+                MarkBoardRow(1, "X     ");
+                MarkBoardRow(2, "X     ");
+                MarkBoardRow(3, "X     ");
+            };
+
+            It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
+        }
+
+        public class when_board_2nd_cell_of_all_the_rows_are_marked_by_single_palyer
+        {
+            Because of = () =>
+            {
+                MarkBoardRow(1, "  X  ");
+                MarkBoardRow(2, "  X  ");
+                MarkBoardRow(3, "  X  ");
+            };
+
+            It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
         }
     }
 }

@@ -2,7 +2,7 @@ namespace TicTacToe.Business
 {
     public class Board
     {
-        const int BOARD_SIZE = 3;
+        public const int BOARD_SIZE = 3;
         readonly CellState[,] _cells = new CellState[BOARD_SIZE, BOARD_SIZE];
 
         public void MarkCell(CellState cellState, int row, int column)

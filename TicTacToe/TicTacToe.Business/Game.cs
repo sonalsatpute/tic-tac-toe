@@ -19,11 +19,34 @@
 
         public CellState GetWinner()
         {
-            CellState firstCellState  = _board.GetCellStatus(0, 0);
-            CellState secondCellState = _board.GetCellStatus(0, 1);
-            CellState thirdCellState  = _board.GetCellStatus(0, 2);
 
-            if (firstCellState == secondCellState && firstCellState == thirdCellState)
+            for (int row = 0; row < Board.BOARD_SIZE; row++)
+            {
+                CellState rowCellState = RowCellState(row);
+
+                if (rowCellState != CellState.Empty)
+                    return rowCellState;
+            }
+
+
+            CellState firstCellState = _board.GetCellStatus(0, 0);
+            CellState secondCellState = _board.GetCellStatus(1, 0);
+            CellState thirdCellState = _board.GetCellStatus(2, 0);
+
+            if (firstCellState != CellState.Empty && firstCellState == secondCellState && firstCellState == thirdCellState)
+                return firstCellState;
+
+            
+            return CellState.Empty;
+        }
+
+        private CellState RowCellState(int row)
+        {
+            CellState firstCellState = _board.GetCellStatus(row, 0);
+            CellState secondCellState = _board.GetCellStatus(row, 1);
+            CellState thirdCellState = _board.GetCellStatus(row, 2);
+
+            if (firstCellState != CellState.Empty && firstCellState == secondCellState && firstCellState == thirdCellState)
                 return firstCellState;
 
             return CellState.Empty;
