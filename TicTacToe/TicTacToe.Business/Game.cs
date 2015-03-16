@@ -19,15 +19,7 @@
 
         public CellState GetWinner()
         {
-            CellState winnnerByRow = _board.GetWinnnerByRow();
-            if (winnnerByRow != CellState.Empty) return winnnerByRow;
-
-            CellState winnnerByColumn = _board.GetWinnnerByColumn();
-            if (winnnerByColumn != CellState.Empty) return winnnerByColumn;
-           
-
-            
-            return CellState.Empty;
+            return _board.GetWinnner();
         }
 
         

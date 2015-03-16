@@ -126,5 +126,17 @@ namespace TicTacToe.Specifications
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Cross);
         }
+
+        public class when_board_3rd_cell_of_all_the_rows_are_marked_by_single_palyer
+        {
+            Because of = () =>
+            {
+                MarkBoardRow(1, " | |O");
+                MarkBoardRow(2, " | |O");
+                MarkBoardRow(3, " | |O");
+            };
+
+            It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Nought);
+        }
     }
 }
