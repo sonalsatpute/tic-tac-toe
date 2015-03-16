@@ -12,7 +12,7 @@ namespace TicTacToe.Business
 
         public bool IsCellEmpty(int row, int column)
         {
-            return _cells[row, column] != CellState.Empty;
+            return _cells[row, column] == CellState.Empty;
         }
 
         public CellState GetCellStatus(int row, int column)

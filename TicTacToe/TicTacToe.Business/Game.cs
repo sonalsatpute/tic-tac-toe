@@ -6,7 +6,7 @@
 
         public void MarkCell(CellState cellState, int row, int column)
         {
-            if (_board.IsCellEmpty(row, column))
+            if (!_board.IsCellEmpty(row, column))
                 throw new InvalidMoveException(string.Format("CellState[{0},{1}] is not empty", row, column));
 
             _board.MarkCell(cellState, row, column);
