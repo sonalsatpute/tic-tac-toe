@@ -48,12 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="ByColumnWinnerFinderStrategy.cs" />
-    <Compile Include="ByRowWinnerFinderStrategy.cs" />
+    <Compile Include="VerticalBoardParser.cs" />
+    <Compile Include="HorizontalBoardParser.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="InvalidMoveException.cs" />
     <Compile Include="CellState.cs" />
-    <Compile Include="IWinnerFinderStrategy.cs" />
+    <Compile Include="IBoardParserStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

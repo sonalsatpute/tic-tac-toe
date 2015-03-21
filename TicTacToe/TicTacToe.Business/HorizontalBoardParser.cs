@@ -1,42 +1,40 @@
 namespace TicTacToe.Business
 {
-    public class ByRowWinnerFinderStrategy : IWinnerFinderStrategy
+    public class HorizontalBoardParser : IBoardParserStrategy
     {
         Board _board;
 
-        public CellState FindWinner(Board board)
+        public CellState Parse(Board board)
         {
             _board = board;
 
-            return GetWinnnerByRow();
+            return GetCellStateAcrossColumn();
         }
 
 
-        public CellState GetWinnnerByRow()
+        private CellState GetCellStateAcrossColumn()
         {
-            CellState rowCellState = CellState.Empty;
-
             for (int row = 0; row < Board.BOARD_SIZE; row++)
             {
-                rowCellState = RowCellState(row);
+                CellState rowCellState = GetCellStateIfAllMatchingOrEmpty(row);
 
-                if (rowCellState != CellState.Empty)
+                if (rowCellState != CellState.Empty) 
                     return rowCellState;
             }
 
-            return rowCellState;
+            return CellState.Empty;
         }
 
-        private CellState RowCellState(int row)
+        private CellState GetCellStateIfAllMatchingOrEmpty(int row)
         {
             CellState firstCellState  = _board.GetCellStatus(row, 0);
             CellState secondCellState = _board.GetCellStatus(row, 1);
             CellState thirdCellState  = _board.GetCellStatus(row, 2);
 
-            bool firsSecondAndThirdRowCellHasSameCellState = firstCellState == secondCellState &&
+            bool areFirstSecondAndThirdCellHaveSameCellState = firstCellState == secondCellState &&
                                                              firstCellState == thirdCellState;
 
-            if (firstCellState != CellState.Empty && firsSecondAndThirdRowCellHasSameCellState)
+            if (areFirstSecondAndThirdCellHaveSameCellState)
                 return firstCellState;
 
             return CellState.Empty;

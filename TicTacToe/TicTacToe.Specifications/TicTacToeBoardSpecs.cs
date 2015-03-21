@@ -138,5 +138,8 @@ namespace TicTacToe.Specifications
 
             It should_declare_player_as_a_winner = () => _game.GetWinner().ShouldEqual(CellState.Nought);
         }
+
+
+
     }
 }
